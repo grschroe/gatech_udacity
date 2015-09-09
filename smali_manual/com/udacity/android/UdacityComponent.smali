@@ -4,6 +4,9 @@
 
 
 # virtual methods
+.method public abstract inject(Lcom/udacity/android/ui/BaseActivity;)V
+.end method
+
 .method public abstract inject(Lcom/udacity/android/ui/auth/AuthActivity;)V
 .end method
 
@@ -23,15 +26,6 @@
 .end method
 
 .method public abstract inject(Lcom/udacity/android/ui/course/CourseOverviewActivity;)V
-.end method
-
-.method public abstract inject(Lcom/udacity/android/ui/ioegg/IOCongratsActivity;)V
-.end method
-
-.method public abstract inject(Lcom/udacity/android/ui/ioegg/IOCourseListActivity;)V
-.end method
-
-.method public abstract inject(Lcom/udacity/android/ui/ioegg/IOIntroActivity;)V
 .end method
 
 .method public abstract inject(Lcom/udacity/android/ui/lesson/LessonActivity;)V

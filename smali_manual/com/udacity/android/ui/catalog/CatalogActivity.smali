@@ -27,7 +27,7 @@
 
 .field mErrorView:Landroid/view/View;
     .annotation build Lbutterknife/InjectView;
-        value = 0x7f0c0067
+        value = 0x7f0f0069
     .end annotation
 .end field
 
@@ -64,16 +64,16 @@
     .registers 1
 
     .prologue
-    .line 32
+    .line 30
     invoke-direct {p0}, Lcom/udacity/android/ui/BaseActivity;-><init>()V
 
     return-void
 .end method
 
-.method static synthetic access$lambda$0(Lcom/udacity/android/ui/catalog/CatalogActivity;Ljava/lang/Boolean;)V
+.method static synthetic access$lambda$0(Lcom/udacity/android/ui/catalog/CatalogActivity;Lcom/udacity/android/data/UserManager$AuthState;)V
     .registers 2
 
-    invoke-direct {p0, p1}, Lcom/udacity/android/ui/catalog/CatalogActivity;->lambda$onCreate$0(Ljava/lang/Boolean;)V
+    invoke-direct {p0, p1}, Lcom/udacity/android/ui/catalog/CatalogActivity;->lambda$onCreate$0(Lcom/udacity/android/data/UserManager$AuthState;)V
 
     return-void
 .end method
@@ -99,22 +99,22 @@
     .param p1, "tracks"    # Ljava/util/List;
 
     .prologue
-    .line 96
+    .line 91
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mProgress:Landroid/widget/ProgressBar;
 
     const/16 v1, 0x8
 
     invoke-virtual {v0, v1}, Landroid/widget/ProgressBar;->setVisibility(I)V
 
-    .line 97
+    .line 92
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
     invoke-virtual {v0, p1}, Lcom/udacity/android/ui/catalog/CatalogAdapter;->swapData(Ljava/util/List;)V
 
-    .line 98
+    .line 93
     invoke-virtual {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->invalidateOptionsMenu()V
 
-    .line 99
+    .line 94
     return-void
 .end method
 
@@ -125,21 +125,21 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 101
+    .line 96
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mProgress:Landroid/widget/ProgressBar;
 
     const/16 v1, 0x8
 
     invoke-virtual {v0, v1}, Landroid/widget/ProgressBar;->setVisibility(I)V
 
-    .line 102
+    .line 97
     const-string v0, "error getting course catalog data"
 
     new-array v1, v2, [Ljava/lang/Object;
 
     invoke-static {p1, v0, v1}, Ltimber/log/Timber;->e(Ljava/lang/Throwable;Ljava/lang/String;[Ljava/lang/Object;)V
 
-    .line 103
+    .line 98
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
     invoke-virtual {v0}, Lcom/udacity/android/ui/catalog/CatalogAdapter;->isEmpty()Z
@@ -148,25 +148,25 @@
 
     if-eqz v0, :cond_1c
 
-    .line 104
+    .line 99
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mErrorView:Landroid/view/View;
 
     invoke-virtual {v0, v2}, Landroid/view/View;->setVisibility(I)V
 
-    .line 106
+    .line 101
     :cond_1c
     return-void
 .end method
 
-.method private synthetic lambda$onCreate$0(Ljava/lang/Boolean;)V
+.method private synthetic lambda$onCreate$0(Lcom/udacity/android/data/UserManager$AuthState;)V
     .registers 2
-    .param p1, "b"    # Ljava/lang/Boolean;
+    .param p1, "b"    # Lcom/udacity/android/data/UserManager$AuthState;
 
     .prologue
-    .line 72
+    .line 70
     invoke-virtual {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->invalidateOptionsMenu()V
 
-    .line 73
+    .line 71
     return-void
 .end method
 
@@ -176,7 +176,7 @@
     .prologue
     const/16 v1, 0x8
 
-    .line 87
+    .line 82
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
     invoke-virtual {v0}, Lcom/udacity/android/ui/catalog/CatalogAdapter;->isEmpty()Z
@@ -185,32 +185,32 @@
 
     if-nez v0, :cond_13
 
-    .line 88
+    .line 83
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mProgress:Landroid/widget/ProgressBar;
 
     invoke-virtual {v0, v1}, Landroid/widget/ProgressBar;->setVisibility(I)V
 
-    .line 89
+    .line 84
     invoke-virtual {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->invalidateOptionsMenu()V
 
-    .line 109
+    .line 104
     :goto_12
     return-void
 
-    .line 91
+    .line 86
     :cond_13
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mErrorView:Landroid/view/View;
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setVisibility(I)V
 
-    .line 92
+    .line 87
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mProgress:Landroid/widget/ProgressBar;
 
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/widget/ProgressBar;->setVisibility(I)V
 
-    .line 93
+    .line 88
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->publicApiClient:Lcom/udacity/android/data/api/publik/UdacityPublicApiClient;
 
     invoke-virtual {v0}, Lcom/udacity/android/data/api/publik/UdacityPublicApiClient;->getCourseCatalog()Lrx/Observable;
@@ -225,12 +225,12 @@
 
     move-result-object v2
 
-    .line 94
+    .line 89
     invoke-virtual {v0, v1, v2}, Lrx/Observable;->subscribe(Lrx/functions/Action1;Lrx/functions/Action1;)Lrx/Subscription;
 
     move-result-object v0
 
-    .line 93
+    .line 88
     invoke-virtual {p0, v0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->bindSubscription(Lrx/Subscription;)Lrx/Subscription;
 
     goto :goto_12
@@ -240,18 +240,18 @@
     .registers 3
 
     .prologue
-    .line 171
+    .line 159
     new-instance v0, Landroid/content/Intent;
 
     const-class v1, Lcom/udacity/android/ui/mycourses/MyCoursesActivity;
 
     invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 172
+    .line 160
     .local v0, "intent":Landroid/content/Intent;
     invoke-virtual {p0, v0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->startActivity(Landroid/content/Intent;)V
 
-    .line 173
+    .line 161
     return-void
 .end method
 
@@ -264,7 +264,7 @@
     .param p3, "data"    # Landroid/content/Intent;
 
     .prologue
-    .line 163
+    .line 151
     const/16 v0, 0x64
 
     if-ne p1, v0, :cond_12
@@ -275,17 +275,17 @@
 
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->userManager:Lcom/udacity/android/data/UserManager;
 
-    .line 165
+    .line 153
     invoke-virtual {v0}, Lcom/udacity/android/data/UserManager;->isLoggedIn()Z
 
     move-result v0
 
     if-eqz v0, :cond_12
 
-    .line 166
+    .line 154
     invoke-direct {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->showMyCourses()V
 
-    .line 168
+    .line 156
     :cond_12
     return-void
 .end method
@@ -296,7 +296,7 @@
     .param p2, "isFeaturedCourse"    # Z
 
     .prologue
-    .line 176
+    .line 164
     iget-object v2, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->analytics:Lcom/udacity/android/data/Analytics;
 
     if-eqz p2, :cond_21
@@ -310,14 +310,14 @@
 
     invoke-virtual {v2, v1, v3, v4}, Lcom/udacity/android/data/Analytics;->trackEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 179
+    .line 167
     new-instance v0, Landroid/content/Intent;
 
     const-class v1, Lcom/udacity/android/ui/course/CourseOverviewActivity;
 
     invoke-direct {v0, p0, v1}, Landroid/content/Intent;-><init>(Landroid/content/Context;Ljava/lang/Class;)V
 
-    .line 180
+    .line 168
     .local v0, "i":Landroid/content/Intent;
     const-string v1, "course"
 
@@ -327,13 +327,13 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;
 
-    .line 181
+    .line 169
     invoke-virtual {p0, v0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->startActivity(Landroid/content/Intent;)V
 
-    .line 182
+    .line 170
     return-void
 
-    .line 176
+    .line 164
     .end local v0    # "i":Landroid/content/Intent;
     :cond_21
     const-string v1, "View Course"
@@ -346,15 +346,15 @@
     .param p1, "savedInstanceState"    # Landroid/os/Bundle;
 
     .prologue
-    .line 50
+    .line 48
     invoke-super {p0, p1}, Lcom/udacity/android/ui/BaseActivity;->onCreate(Landroid/os/Bundle;)V
 
-    .line 52
-    const v0, 0x7f08009e
+    .line 50
+    const v0, 0x7f090092
 
     invoke-virtual {p0, v0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->setTitle(I)V
 
-    .line 53
+    .line 51
     invoke-virtual {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->getActionBar()Landroid/app/ActionBar;
 
     move-result-object v0
@@ -363,22 +363,22 @@
 
     invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setDisplayShowTitleEnabled(Z)V
 
-    .line 55
+    .line 53
     invoke-virtual {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->getComponent()Lcom/udacity/android/UdacityComponent;
 
     move-result-object v0
 
     invoke-interface {v0, p0}, Lcom/udacity/android/UdacityComponent;->inject(Lcom/udacity/android/ui/catalog/CatalogActivity;)V
 
-    .line 57
-    const v0, 0x7f03001a
+    .line 55
+    const v0, 0x7f04001a
 
     invoke-super {p0, v0}, Lcom/udacity/android/ui/BaseActivity;->setContentView(I)V
 
-    .line 58
+    .line 56
     invoke-static {p0}, Lbutterknife/ButterKnife;->inject(Landroid/app/Activity;)V
 
-    .line 61
+    .line 59
     new-instance v0, Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
     invoke-static {p0}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
@@ -391,26 +391,26 @@
 
     iput-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
-    .line 62
+    .line 60
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
     invoke-virtual {v0, p0}, Lcom/udacity/android/ui/catalog/CatalogAdapter;->setOnLessonClickListener(Lcom/udacity/android/ui/catalog/OnLessonClickListener;)V
 
-    .line 63
+    .line 61
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mListView:Landroid/widget/ListView;
 
     iget-object v1, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
     invoke-virtual {v0, v1}, Landroid/widget/ListView;->setAdapter(Landroid/widget/ListAdapter;)V
 
-    .line 65
+    .line 63
     iget-object v1, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
-    if-eqz p1, :cond_7c
+    if-eqz p1, :cond_6f
 
     const-string v0, "tracks"
 
-    .line 66
+    .line 64
     invoke-virtual {p1, v0}, Landroid/os/Bundle;->getParcelable(Ljava/lang/String;)Landroid/os/Parcelable;
 
     move-result-object v0
@@ -421,14 +421,14 @@
 
     check-cast v0, Ljava/util/List;
 
-    .line 65
+    .line 63
     :goto_4a
     invoke-virtual {v1, v0}, Lcom/udacity/android/ui/catalog/CatalogAdapter;->swapData(Ljava/util/List;)V
 
-    .line 69
+    .line 67
     invoke-direct {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->loadCatalog()V
 
-    .line 71
+    .line 69
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->userManager:Lcom/udacity/android/data/UserManager;
 
     invoke-virtual {v0}, Lcom/udacity/android/data/UserManager;->authObservable()Lrx/Observable;
@@ -445,41 +445,26 @@
 
     invoke-virtual {p0, v0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->bindSubscription(Lrx/Subscription;)Lrx/Subscription;
 
-    .line 75
+    .line 73
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->userManager:Lcom/udacity/android/data/UserManager;
 
     invoke-virtual {v0}, Lcom/udacity/android/data/UserManager;->isLoggedIn()Z
 
     move-result v0
 
-    if-eqz v0, :cond_7b
+    if-eqz v0, :cond_6e
 
-    .line 80
-    iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->apiClient:Lcom/udacity/android/data/api/internal/UdacityApiClient;
-
-    invoke-virtual {v0}, Lcom/udacity/android/data/api/internal/UdacityApiClient;->identify()Lrx/Observable;
-
-    move-result-object v0
-
-    .line 81
-    invoke-virtual {v0}, Lrx/Observable;->subscribe()Lrx/Subscription;
-
-    move-result-object v0
-
-    .line 80
-    invoke-virtual {p0, v0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->bindSubscription(Lrx/Subscription;)Lrx/Subscription;
-
-    .line 82
+    .line 77
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->analytics:Lcom/udacity/android/data/Analytics;
 
     invoke-static {p0, v0}, Lcom/udacity/android/data/rate/Rate;->checkAndShow(Landroid/app/Activity;Lcom/udacity/android/data/Analytics;)V
 
-    .line 84
-    :cond_7b
+    .line 79
+    :cond_6e
     return-void
 
-    .line 66
-    :cond_7c
+    .line 64
+    :cond_6f
     const/4 v0, 0x0
 
     goto :goto_4a
@@ -490,19 +475,19 @@
     .param p1, "menu"    # Landroid/view/Menu;
 
     .prologue
-    .line 119
+    .line 114
     invoke-super {p0, p1}, Lcom/udacity/android/ui/BaseActivity;->onCreateOptionsMenu(Landroid/view/Menu;)Z
 
-    .line 120
+    .line 115
     invoke-virtual {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->getMenuInflater()Landroid/view/MenuInflater;
 
     move-result-object v0
 
-    const/high16 v1, 0x7f0f0000
+    const/high16 v1, 0x7f100000
 
     invoke-virtual {v0, v1, p1}, Landroid/view/MenuInflater;->inflate(ILandroid/view/Menu;)V
 
-    .line 121
+    .line 116
     const/4 v0, 0x1
 
     return v0
@@ -512,15 +497,15 @@
     .registers 1
     .annotation build Lbutterknife/OnClick;
         value = {
-            0x7f0c0067
+            0x7f0f0069
         }
     .end annotation
 
     .prologue
-    .line 185
+    .line 173
     invoke-direct {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->loadCatalog()V
 
-    .line 186
+    .line 174
     return-void
 .end method
 
@@ -532,14 +517,14 @@
     .prologue
     const/4 v1, 0x1
 
-    .line 136
+    .line 127
     invoke-interface {p2}, Landroid/view/MenuItem;->getItemId()I
 
     move-result v2
 
-    packed-switch v2, :pswitch_data_60
+    packed-switch v2, :pswitch_data_5c
 
-    .line 159
+    .line 147
     invoke-super {p0, p1, p2}, Lcom/udacity/android/ui/BaseActivity;->onMenuItemSelected(ILandroid/view/MenuItem;)Z
 
     move-result v1
@@ -547,7 +532,7 @@
     :goto_c
     return v1
 
-    .line 138
+    .line 129
     :pswitch_d
     iget-object v2, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->userManager:Lcom/udacity/android/data/UserManager;
 
@@ -557,7 +542,7 @@
 
     if-nez v2, :cond_1b
 
-    .line 139
+    .line 130
     const/16 v2, 0x64
 
     invoke-static {p0, v2}, Lcom/udacity/android/grschroe/GeorgiaTechSSOActivity;->startActivityForResult(Landroid/app/Activity;I)V
@@ -568,13 +553,13 @@
 
     goto :goto_c
 
-    .line 141
+    .line 132
     :cond_1b
     invoke-direct {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->showMyCourses()V
 
     goto :goto_c
 
-    .line 145
+    .line 136
     :pswitch_1f
     iget-object v2, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->analytics:Lcom/udacity/android/data/Analytics;
 
@@ -582,14 +567,14 @@
 
     invoke-virtual {v2, v3}, Lcom/udacity/android/data/Analytics;->trackEvent(Ljava/lang/String;)V
 
-    .line 146
+    .line 137
     iget-object v2, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->userManager:Lcom/udacity/android/data/UserManager;
 
     invoke-virtual {v2}, Lcom/udacity/android/data/UserManager;->logout()V
 
     goto :goto_c
 
-    .line 149
+    .line 140
     :pswitch_2c
     new-instance v0, Landroid/content/Intent;
 
@@ -597,25 +582,25 @@
 
     invoke-direct {v0, v2}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
-    .line 150
+    .line 141
     .local v0, "intent":Landroid/content/Intent;
     const-string v2, "text/html"
 
     invoke-virtual {v0, v2}, Landroid/content/Intent;->setType(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 151
+    .line 142
     const-string v2, "android.intent.extra.EMAIL"
 
     new-array v3, v1, [Ljava/lang/String;
 
     const/4 v4, 0x0
 
-    .line 152
+    .line 143
     invoke-virtual {p0}, Lcom/udacity/android/ui/catalog/CatalogActivity;->getResources()Landroid/content/res/Resources;
 
     move-result-object v5
 
-    const v6, 0x7f080094
+    const v6, 0x7f09008d
 
     invoke-virtual {v5, v6}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -623,11 +608,11 @@
 
     aput-object v5, v3, v4
 
-    .line 151
+    .line 142
     invoke-virtual {v0, v2, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;[Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 153
-    const v2, 0x7f0800bc
+    .line 144
+    const v2, 0x7f0900a8
 
     invoke-virtual {p0, v2}, Lcom/udacity/android/ui/catalog/CatalogActivity;->getString(I)Ljava/lang/String;
 
@@ -641,100 +626,66 @@
 
     goto :goto_c
 
-    .line 156
-    .end local v0    # "intent":Landroid/content/Intent;
-    :pswitch_5c
-    invoke-static {p0}, Lcom/udacity/android/ui/ioegg/IOIntroActivity;->startActivity(Landroid/content/Context;)V
-
-    goto :goto_c
-
-    .line 136
-    :pswitch_data_60
-    .packed-switch 0x7f0c00f5
+    .line 127
+    :pswitch_data_5c
+    .packed-switch 0x7f0f00fe
         :pswitch_d
         :pswitch_2c
         :pswitch_1f
-        :pswitch_5c
     .end packed-switch
 .end method
 
 .method public onPrepareOptionsMenu(Landroid/view/Menu;)Z
-    .registers 6
+    .registers 5
     .param p1, "menu"    # Landroid/view/Menu;
 
     .prologue
-    const/4 v2, 0x1
+    const/4 v1, 0x1
 
-    .line 125
+    .line 120
     invoke-super {p0, p1}, Lcom/udacity/android/ui/BaseActivity;->onPrepareOptionsMenu(Landroid/view/Menu;)Z
 
-    .line 126
-    const v1, 0x7f0c00f5
+    .line 121
+    const v0, 0x7f0f00fe
 
-    invoke-interface {p1, v1}, Landroid/view/Menu;->findItem(I)Landroid/view/MenuItem;
+    invoke-interface {p1, v0}, Landroid/view/Menu;->findItem(I)Landroid/view/MenuItem;
 
-    move-result-object v3
+    move-result-object v2
 
-    iget-object v1, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
+    iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
-    invoke-virtual {v1}, Lcom/udacity/android/ui/catalog/CatalogAdapter;->isEmpty()Z
-
-    move-result v1
-
-    if-nez v1, :cond_3e
-
-    move v1, v2
-
-    :goto_14
-    invoke-interface {v3, v1}, Landroid/view/MenuItem;->setVisible(Z)Landroid/view/MenuItem;
-
-    .line 127
-    const v1, 0x7f0c00f7
-
-    invoke-interface {p1, v1}, Landroid/view/Menu;->findItem(I)Landroid/view/MenuItem;
-
-    move-result-object v1
-
-    iget-object v3, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->userManager:Lcom/udacity/android/data/UserManager;
-
-    invoke-virtual {v3}, Lcom/udacity/android/data/UserManager;->isLoggedIn()Z
-
-    move-result v3
-
-    invoke-interface {v1, v3}, Landroid/view/MenuItem;->setVisible(Z)Landroid/view/MenuItem;
-
-    .line 128
-    const-string v1, "release"
-
-    const-string v3, "debug"
-
-    invoke-virtual {v1, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v0}, Lcom/udacity/android/ui/catalog/CatalogAdapter;->isEmpty()Z
 
     move-result v0
 
-    .line 129
-    .local v0, "debug":Z
-    const v1, 0x7f0c00f8
+    if-nez v0, :cond_28
 
-    invoke-interface {p1, v1}, Landroid/view/Menu;->findItem(I)Landroid/view/MenuItem;
+    move v0, v1
 
-    move-result-object v1
+    :goto_14
+    invoke-interface {v2, v0}, Landroid/view/MenuItem;->setVisible(Z)Landroid/view/MenuItem;
 
-    .line 130
-    invoke-interface {v1, v0}, Landroid/view/MenuItem;->setVisible(Z)Landroid/view/MenuItem;
+    .line 122
+    const v0, 0x7f0f0100
 
-    move-result-object v1
+    invoke-interface {p1, v0}, Landroid/view/Menu;->findItem(I)Landroid/view/MenuItem;
 
-    .line 131
-    invoke-interface {v1, v0}, Landroid/view/MenuItem;->setEnabled(Z)Landroid/view/MenuItem;
+    move-result-object v0
 
-    .line 132
-    return v2
+    iget-object v2, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->userManager:Lcom/udacity/android/data/UserManager;
 
-    .line 126
-    .end local v0    # "debug":Z
-    :cond_3e
-    const/4 v1, 0x0
+    invoke-virtual {v2}, Lcom/udacity/android/data/UserManager;->isLoggedIn()Z
+
+    move-result v2
+
+    invoke-interface {v0, v2}, Landroid/view/MenuItem;->setVisible(Z)Landroid/view/MenuItem;
+
+    .line 123
+    return v1
+
+    .line 121
+    :cond_28
+    const/4 v0, 0x0
 
     goto :goto_14
 .end method
@@ -744,15 +695,15 @@
     .param p1, "outState"    # Landroid/os/Bundle;
 
     .prologue
-    .line 112
+    .line 107
     invoke-super {p0, p1}, Lcom/udacity/android/ui/BaseActivity;->onSaveInstanceState(Landroid/os/Bundle;)V
 
-    .line 113
+    .line 108
     iget-object v0, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
 
     if-eqz v0, :cond_16
 
-    .line 114
+    .line 109
     const-string v0, "tracks"
 
     iget-object v1, p0, Lcom/udacity/android/ui/catalog/CatalogActivity;->mAdapter:Lcom/udacity/android/ui/catalog/CatalogAdapter;
@@ -767,7 +718,7 @@
 
     invoke-virtual {p1, v0, v1}, Landroid/os/Bundle;->putParcelable(Ljava/lang/String;Landroid/os/Parcelable;)V
 
-    .line 116
+    .line 111
     :cond_16
     return-void
 .end method

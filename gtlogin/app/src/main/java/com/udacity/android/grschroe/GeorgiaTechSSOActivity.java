@@ -15,6 +15,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.udacity.android.data.api.internal.Responses;
+import com.udacity.android.data.api.internal.UdacityApiClient;
 import com.udacity.android.ui.BaseActivity;
 import com.udacity.android.ui.catalog.CatalogActivity;
 
@@ -24,10 +26,15 @@ import java.net.URI;
 
 import javax.inject.Inject;
 
+import rx.functions.Action1;
+
 public class GeorgiaTechSSOActivity extends BaseActivity {
 
     @Inject
     CookieStore cookieStore;
+    @Inject
+    UdacityApiClient api;
+
     private WebView ssoWebview;
     private ProgressBar mProgressBar;
 
@@ -41,10 +48,10 @@ public class GeorgiaTechSSOActivity extends BaseActivity {
 
         //hackish way of not bothering with the resource files
         //just copied the layout params from the my courses activity
-        @LayoutRes int activity_my_courses = 2130903077;
-        @IdRes int list = 16908298;
-        @IdRes int progress = 16908301;
-        @IdRes int empty = 16908292;
+        @LayoutRes int activity_my_courses = 0x7f040022;
+        @IdRes int list = 0x102000a;
+        @IdRes int progress = 0x102000d;
+        @IdRes int empty = 0x1020004;
 
         setContentView(activity_my_courses);
 
@@ -77,13 +84,13 @@ public class GeorgiaTechSSOActivity extends BaseActivity {
     }
 
     /**
-     * Sets up the preferences file using the apps cookieStore
+     * Logs in using cookies grabbed from gatech sso session
      *
      * @param url
      * @param DgU00
      * @param sso_auth
      */
-    private void setPreferences(String url, String DgU00, String sso_auth) {
+    private void loginWithCookies(String url, String DgU00, String sso_auth) {
         HttpCookie DgU00_cookie = new HttpCookie("DgU00", DgU00);
         DgU00_cookie.setComment(null);
         DgU00_cookie.setCommentURL(null);
@@ -110,6 +117,22 @@ public class GeorgiaTechSSOActivity extends BaseActivity {
         cookieStore.add(URI.create(url), sso_auth_cookie);
         cookieStore.add(URI.create(url), DgU00_cookie);
 
+        bindSubscription(api.signIn().subscribe(new Action1<Responses.SessionResponse>() {
+            @Override
+            public void call(Responses.SessionResponse sessionResponse) {
+                finishWithResult();
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                finishWithoutResult();
+            }
+        }));
+    }
+
+    private void finishWithoutResult(){
+        startActivity(new Intent(this, CatalogActivity.class));
+        finish();
     }
 
     private void finishWithResult() {
@@ -122,8 +145,7 @@ public class GeorgiaTechSSOActivity extends BaseActivity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch (item.getItemId()) {
             case 16908332:
-                startActivity(new Intent(this, CatalogActivity.class));
-                finish();
+                finishWithoutResult();
                 return true;
             default:
                 return super.onMenuItemSelected(featureId, item);
@@ -135,6 +157,7 @@ public class GeorgiaTechSSOActivity extends BaseActivity {
 
         private long lastPageStart;
         private long lastPageFinish;
+        private boolean finished = false;
 
         CustomWebViewClient() {
             super();
@@ -174,8 +197,8 @@ public class GeorgiaTechSSOActivity extends BaseActivity {
                 String DgU00 = getCookie(url, "DgU00");
                 String sso_auth = getCookie(url, "sso_auth");
                 if (DgU00 != null && sso_auth != null) {
-                    setPreferences(url, DgU00, sso_auth);
-                    finishWithResult();
+                    loginWithCookies(url, DgU00, sso_auth);
+                    finished = true;
                 }
             }
 
@@ -196,7 +219,7 @@ public class GeorgiaTechSSOActivity extends BaseActivity {
         }
 
         private void remove_splash() {
-            if (lastPageStart < lastPageFinish) {
+            if (lastPageStart < lastPageFinish && !finished) {
                 ssoWebview.setVisibility(View.VISIBLE);
                 mProgressBar.setVisibility(View.GONE);
             }

@@ -42,6 +42,17 @@
     .end annotation
 .end field
 
+.field private baseActivityMembersInjector:Ldagger/MembersInjector;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ldagger/MembersInjector",
+            "<",
+            "Lcom/udacity/android/ui/BaseActivity;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private catalogActivityMembersInjector:Ldagger/MembersInjector;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -63,7 +74,6 @@
         }
     .end annotation
 .end field
-
 
 .field private courseOverviewActivityMembersInjector:Ldagger/MembersInjector;
     .annotation system Ldalvik/annotation/Signature;
@@ -103,40 +113,7 @@
         value = {
             "Ljavax/inject/Provider",
             "<",
-            "Lcom/udacity/android/ui/auth/GoogleClient;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field private iOCongratsActivityMembersInjector:Ldagger/MembersInjector;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/udacity/android/ui/ioegg/IOCongratsActivity;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field private iOCourseListActivityMembersInjector:Ldagger/MembersInjector;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/udacity/android/ui/ioegg/IOCourseListActivity;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field private iOIntroActivityMembersInjector:Ldagger/MembersInjector;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ldagger/MembersInjector",
-            "<",
-            "Lcom/udacity/android/ui/ioegg/IOIntroActivity;",
+            "Lcom/udacity/android/core/auth/GoogleClient;",
             ">;"
         }
     .end annotation
@@ -252,6 +229,43 @@
     .end annotation
 .end field
 
+.field private provideAuthObservableProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lrx/Observable",
+            "<",
+            "Lcom/udacity/android/data/UserManager$AuthState;",
+            ">;>;"
+        }
+    .end annotation
+.end field
+
+.field private provideAuthSubjectProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lrx/subjects/PublishSubject",
+            "<",
+            "Lcom/udacity/android/data/UserManager$AuthState;",
+            ">;>;"
+        }
+    .end annotation
+.end field
+
+.field private provideBriteDatabaseProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/squareup/sqlbrite/BriteDatabase;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private provideClientProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -351,7 +365,7 @@
     .end annotation
 .end field
 
-.field private provideMixPanelAPIProvider:Ljavax/inject/Provider;
+.field private provideMixpanelAPIProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljavax/inject/Provider",
@@ -368,6 +382,17 @@
             "Ljavax/inject/Provider",
             "<",
             "Lcom/squareup/okhttp/OkHttpClient;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private provideOpenHelperProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Landroid/database/sqlite/SQLiteOpenHelper;",
             ">;"
         }
     .end annotation
@@ -494,12 +519,34 @@
     .end annotation
 .end field
 
+.field private udacityDatabaseProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/udacity/android/data/database/UdacityDatabase;",
+            ">;"
+        }
+    .end annotation
+.end field
+
 .field private udacityPublicApiClientProvider:Ljavax/inject/Provider;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljavax/inject/Provider",
             "<",
             "Lcom/udacity/android/data/api/publik/UdacityPublicApiClient;",
+            ">;"
+        }
+    .end annotation
+.end field
+
+.field private userErrorHandlerProvider:Ljavax/inject/Provider;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljavax/inject/Provider",
+            "<",
+            "Lcom/udacity/android/data/api/internal/UserErrorHandler;",
             ">;"
         }
     .end annotation
@@ -522,7 +569,7 @@
     .registers 1
 
     .prologue
-    .line 99
+    .line 108
     const-class v0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;
 
     invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
@@ -549,10 +596,10 @@
     .param p1, "builder"    # Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;
 
     .prologue
-    .line 146
+    .line 159
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 147
+    .line 160
     sget-boolean v0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->$assertionsDisabled:Z
 
     if-nez v0, :cond_f
@@ -565,11 +612,11 @@
 
     throw v0
 
-    .line 148
+    .line 161
     :cond_f
     invoke-direct {p0, p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->initialize(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)V
 
-    .line 149
+    .line 162
     return-void
 .end method
 
@@ -579,7 +626,7 @@
     .param p2, "x1"    # Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$1;
 
     .prologue
-    .line 100
+    .line 109
     invoke-direct {p0, p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;-><init>(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)V
 
     return-void
@@ -589,7 +636,7 @@
     .registers 2
 
     .prologue
-    .line 152
+    .line 165
     new-instance v0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;
 
     const/4 v1, 0x0
@@ -604,25 +651,9 @@
     .param p1, "builder"    # Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;
 
     .prologue
-    .line 156
-    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
-
-    move-result-object v0
-
-    invoke-static {v0}, Lcom/udacity/android/data/api/ApiModule_ProvideEndpointFactory;->create(Lcom/udacity/android/data/api/ApiModule;)Ldagger/internal/Factory;
-
-    move-result-object v0
-
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideEndpointProvider:Ljavax/inject/Provider;
-
-    .line 157
+    .line 169
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->applicationModule:Lcom/udacity/android/core/module/ApplicationModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/core/module/ApplicationModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/core/module/ApplicationModule;
 
     move-result-object v0
 
@@ -636,7 +667,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
 
-    .line 158
+    .line 170
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
@@ -649,9 +680,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->persistentCookieStoreProvider:Ljavax/inject/Provider;
 
-    .line 159
+    .line 171
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
 
     move-result-object v0
 
@@ -667,9 +698,178 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideCookieStoreProvider:Ljavax/inject/Provider;
 
-    .line 160
+    .line 172
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideSharedPreferencesFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideSharedPreferencesProvider:Ljavax/inject/Provider;
+
+    .line 173
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideOpenHelperFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideOpenHelperProvider:Ljavax/inject/Provider;
+
+    .line 174
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/udacity/android/data/api/ApiModule_ProvideAuthSubjectFactory;->create(Lcom/udacity/android/data/api/ApiModule;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAuthSubjectProvider:Ljavax/inject/Provider;
+
+    .line 175
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideCookieStoreProvider:Ljavax/inject/Provider;
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideSharedPreferencesProvider:Ljavax/inject/Provider;
+
+    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideOpenHelperProvider:Ljavax/inject/Provider;
+
+    iget-object v3, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAuthSubjectProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1, v2, v3}, Lcom/udacity/android/data/UserManager_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userManagerProvider:Ljavax/inject/Provider;
+
+    .line 176
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideMixpanelAPIFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideMixpanelAPIProvider:Ljavax/inject/Provider;
+
+    .line 177
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideGoogleAnalyticsTrackerFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideGoogleAnalyticsTrackerProvider:Ljavax/inject/Provider;
+
+    .line 178
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideInstallSharedPreferencesFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideInstallSharedPreferencesProvider:Ljavax/inject/Provider;
+
+    .line 179
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideMixpanelAPIProvider:Ljavax/inject/Provider;
+
+    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideGoogleAnalyticsTrackerProvider:Ljavax/inject/Provider;
+
+    iget-object v3, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideInstallSharedPreferencesProvider:Ljavax/inject/Provider;
+
+    iget-object v4, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userManagerProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1, v2, v3, v4}, Lcom/udacity/android/data/Analytics_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
+
+    .line 180
+    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userManagerProvider:Ljavax/inject/Provider;
+
+    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1, v2}, Lcom/udacity/android/ui/BaseActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
+
+    .line 181
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+
+    move-result-object v0
+
+    invoke-static {v0}, Lcom/udacity/android/data/api/ApiModule_ProvideEndpointFactory;->create(Lcom/udacity/android/data/api/ApiModule;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideEndpointProvider:Ljavax/inject/Provider;
+
+    .line 182
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
 
     move-result-object v0
 
@@ -685,9 +885,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideCookieHandlerProvider:Ljavax/inject/Provider;
 
-    .line 161
+    .line 183
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
 
     move-result-object v0
 
@@ -705,9 +905,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideOkHttpClientProvider:Ljavax/inject/Provider;
 
-    .line 162
+    .line 184
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
@@ -723,9 +923,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideClientProvider:Ljavax/inject/Provider;
 
-    .line 163
+    .line 185
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
 
     move-result-object v0
 
@@ -739,9 +939,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideGsonProvider:Ljavax/inject/Provider;
 
-    .line 164
+    .line 186
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
@@ -757,9 +957,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideConverterProvider:Ljavax/inject/Provider;
 
-    .line 165
+    .line 187
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
@@ -777,9 +977,18 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providesRequestInterceptorProvider:Ljavax/inject/Provider;
 
-    .line 166
+    .line 188
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAuthSubjectProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0}, Lcom/udacity/android/data/api/internal/UserErrorHandler_Factory;->create(Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userErrorHandlerProvider:Ljavax/inject/Provider;
+
+    .line 189
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
@@ -791,7 +1000,9 @@
 
     iget-object v4, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providesRequestInterceptorProvider:Ljavax/inject/Provider;
 
-    invoke-static {v0, v1, v2, v3, v4}, Lcom/udacity/android/data/api/ApiModule_ProvideRestAdapterFactory;->create(Lcom/udacity/android/data/api/ApiModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    iget-object v5, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userErrorHandlerProvider:Ljavax/inject/Provider;
+
+    invoke-static/range {v0 .. v5}, Lcom/udacity/android/data/api/ApiModule_ProvideRestAdapterFactory;->create(Lcom/udacity/android/data/api/ApiModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
@@ -801,9 +1012,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideRestAdapterProvider:Ljavax/inject/Provider;
 
-    .line 167
+    .line 190
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
@@ -819,107 +1030,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideUdacityApiProvider:Ljavax/inject/Provider;
 
-    .line 168
-    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideSharedPreferencesFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v0
-
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideSharedPreferencesProvider:Ljavax/inject/Provider;
-
-    .line 169
-    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideCookieStoreProvider:Ljavax/inject/Provider;
-
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideSharedPreferencesProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/udacity/android/data/UserManager_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userManagerProvider:Ljavax/inject/Provider;
-
-    .line 170
-    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideMixPanelAPIFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v0
-
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideMixPanelAPIProvider:Ljavax/inject/Provider;
-
-    .line 171
-    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideGoogleAnalyticsTrackerFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v0
-
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideGoogleAnalyticsTrackerProvider:Ljavax/inject/Provider;
-
-    .line 172
-    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideInstallSharedPreferencesFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v0
-
-    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideInstallSharedPreferencesProvider:Ljavax/inject/Provider;
-
-    .line 173
-    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
-
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideMixPanelAPIProvider:Ljavax/inject/Provider;
-
-    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideGoogleAnalyticsTrackerProvider:Ljavax/inject/Provider;
-
-    iget-object v3, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideInstallSharedPreferencesProvider:Ljavax/inject/Provider;
-
-    iget-object v4, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userManagerProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1, v2, v3, v4}, Lcom/udacity/android/data/Analytics_Factory;->create(Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
-
-    .line 174
+    .line 191
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
@@ -938,9 +1049,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityApiClientProvider:Ljavax/inject/Provider;
 
-    .line 175
+    .line 192
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
@@ -954,9 +1065,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providePublicEndpointProvider:Ljavax/inject/Provider;
 
-    .line 176
+    .line 193
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
@@ -968,7 +1079,9 @@
 
     iget-object v4, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providesRequestInterceptorProvider:Ljavax/inject/Provider;
 
-    invoke-static {v0, v1, v2, v3, v4}, Lcom/udacity/android/data/api/ApiModule_ProvidePublicRestAdapterFactory;->create(Lcom/udacity/android/data/api/ApiModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    iget-object v5, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userErrorHandlerProvider:Ljavax/inject/Provider;
+
+    invoke-static/range {v0 .. v5}, Lcom/udacity/android/data/api/ApiModule_ProvidePublicRestAdapterFactory;->create(Lcom/udacity/android/data/api/ApiModule;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
@@ -978,9 +1091,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providePublicRestAdapterProvider:Ljavax/inject/Provider;
 
-    .line 177
+    .line 194
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$100(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
@@ -996,7 +1109,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providePublicUdacityApiProvider:Ljavax/inject/Provider;
 
-    .line 178
+    .line 195
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
@@ -1009,9 +1122,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityPublicApiClientProvider:Ljavax/inject/Provider;
 
-    .line 179
+    .line 196
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
 
     move-result-object v0
 
@@ -1029,10 +1142,8 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providePicassoProvider:Ljavax/inject/Provider;
 
-    .line 180
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v0
+    .line 197
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityApiClientProvider:Ljavax/inject/Provider;
 
@@ -1050,27 +1161,61 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->catalogActivityMembersInjector:Ldagger/MembersInjector;
 
-#-------------eorgiaTechSSOActivity
+    .line 198
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideOpenHelperProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1}, Lcom/udacity/android/data/DataModule_ProvideBriteDatabaseFactory;->create(Lcom/udacity/android/data/DataModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideBriteDatabaseProvider:Ljavax/inject/Provider;
 
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideCookieStoreProvider:Ljavax/inject/Provider;
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityApiClientProvider:Ljavax/inject/Provider;
 
-    invoke-static {v0, v1}, Lcom/udacity/android/grschroe/GeorgiaTechSSOActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideCookieStoreProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1, v2}, Lcom/udacity/android/grschroe/GeorgiaTechSSOActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->georgiaTechSSOActivityMembersInjector:Ldagger/MembersInjector;
 
-#-------------
-
-
-    .line 181
+    .line 199
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
+
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
+
+    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideBriteDatabaseProvider:Ljavax/inject/Provider;
+
+    iget-object v3, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityApiClientProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1, v2, v3}, Lcom/udacity/android/data/database/UdacityDatabase_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+
+    move-result-object v0
+
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityDatabaseProvider:Ljavax/inject/Provider;
+
+    .line 200
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
 
@@ -1078,13 +1223,15 @@
 
     iget-object v3, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityPublicApiClientProvider:Ljavax/inject/Provider;
 
-    invoke-static {v0, v1, v2, v3}, Lcom/udacity/android/ui/mycourses/MyCoursesActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    iget-object v4, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityDatabaseProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1, v2, v3, v4}, Lcom/udacity/android/ui/mycourses/MyCoursesActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->myCoursesActivityMembersInjector:Ldagger/MembersInjector;
 
-    .line 182
+    .line 201
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
@@ -1097,23 +1244,21 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->facebookApiClientProvider:Ljavax/inject/Provider;
 
-    .line 183
+    .line 202
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityApiClientProvider:Ljavax/inject/Provider;
 
-    invoke-static {v0, v1}, Lcom/udacity/android/ui/auth/GoogleClient_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
+    invoke-static {v0, v1}, Lcom/udacity/android/core/auth/GoogleClient_Factory;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->googleClientProvider:Ljavax/inject/Provider;
 
-    .line 184
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v0
+    .line 203
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->facebookApiClientProvider:Ljavax/inject/Provider;
 
@@ -1129,7 +1274,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->authActivityMembersInjector:Ldagger/MembersInjector;
 
-    .line 185
+    .line 204
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->markdownModule:Lcom/udacity/android/data/MarkdownModule;
     invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$400(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/MarkdownModule;
 
@@ -1145,7 +1290,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAndDownConverterProvider:Ljavax/inject/Provider;
 
-    .line 186
+    .line 205
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->markdownModule:Lcom/udacity/android/data/MarkdownModule;
     invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$400(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/MarkdownModule;
 
@@ -1161,7 +1306,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideTagHandlerProvider:Ljavax/inject/Provider;
 
-    .line 187
+    .line 206
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAndDownConverterProvider:Ljavax/inject/Provider;
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideTagHandlerProvider:Ljavax/inject/Provider;
@@ -1174,9 +1319,9 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->markdownProcessorProvider:Ljavax/inject/Provider;
 
-    .line 188
+    .line 207
     # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->dataModule:Lcom/udacity/android/data/DataModule;
-    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$200(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/DataModule;
 
     move-result-object v0
 
@@ -1190,10 +1335,8 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideLinkMovementMethodProvider:Ljavax/inject/Provider;
 
-    .line 189
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v0
+    .line 208
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providePicassoProvider:Ljavax/inject/Provider;
 
@@ -1207,10 +1350,8 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->feedbackActivityMembersInjector:Ldagger/MembersInjector;
 
-    .line 190
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v0
+    .line 209
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providePicassoProvider:Ljavax/inject/Provider;
 
@@ -1234,35 +1375,35 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->courseOverviewActivityMembersInjector:Ldagger/MembersInjector;
 
-    .line 191
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v0
+    .line 210
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityApiClientProvider:Ljavax/inject/Provider;
 
-    invoke-static {v0, v1}, Lcom/udacity/android/ui/lesson/LessonActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityDatabaseProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1, v2}, Lcom/udacity/android/ui/lesson/LessonActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->lessonActivityMembersInjector:Ldagger/MembersInjector;
 
-    .line 192
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v0
+    .line 211
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
 
     iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityApiClientProvider:Ljavax/inject/Provider;
 
-    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
+    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityDatabaseProvider:Ljavax/inject/Provider;
 
-    invoke-static {v0, v1, v2}, Lcom/udacity/android/ui/lesson/LessonNavActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    iget-object v3, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
+
+    invoke-static {v0, v1, v2, v3}, Lcom/udacity/android/ui/lesson/LessonNavActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->lessonNavActivityMembersInjector:Ldagger/MembersInjector;
 
-    .line 193
+    .line 212
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
@@ -1281,7 +1422,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->nanodegreeActivityMembersInjector:Ldagger/MembersInjector;
 
-    .line 194
+    .line 213
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
@@ -1300,7 +1441,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->loginFragmentMembersInjector:Ldagger/MembersInjector;
 
-    .line 195
+    .line 214
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
@@ -1315,7 +1456,7 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->signupFragmentMembersInjector:Ldagger/MembersInjector;
 
-    .line 196
+    .line 215
     invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
 
     move-result-object v0
@@ -1328,52 +1469,25 @@
 
     iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->passwordResetDialogMembersInjector:Ldagger/MembersInjector;
 
-    .line 197
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+    .line 216
+    # getter for: Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->apiModule:Lcom/udacity/android/data/api/ApiModule;
+    invoke-static {p1}, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;->access$300(Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent$Builder;)Lcom/udacity/android/data/api/ApiModule;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userManagerProvider:Ljavax/inject/Provider;
+    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAuthSubjectProvider:Ljavax/inject/Provider;
 
-    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1, v2}, Lcom/udacity/android/ui/ioegg/IOIntroActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
+    invoke-static {v0, v1}, Lcom/udacity/android/data/api/ApiModule_ProvideAuthObservableFactory;->create(Lcom/udacity/android/data/api/ApiModule;Ljavax/inject/Provider;)Ldagger/internal/Factory;
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->iOIntroActivityMembersInjector:Ldagger/MembersInjector;
-
-    .line 198
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
+    invoke-static {v0}, Ldagger/internal/ScopedProvider;->create(Ldagger/internal/Factory;)Ljavax/inject/Provider;
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providePicassoProvider:Ljavax/inject/Provider;
+    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAuthObservableProvider:Ljavax/inject/Provider;
 
-    iget-object v2, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideUdacityApiProvider:Ljavax/inject/Provider;
-
-    iget-object v3, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1, v2, v3}, Lcom/udacity/android/ui/ioegg/IOCourseListActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;Ljavax/inject/Provider;Ljavax/inject/Provider;)Ldagger/MembersInjector;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->iOCourseListActivityMembersInjector:Ldagger/MembersInjector;
-
-    .line 199
-    invoke-static {}, Ldagger/internal/MembersInjectors;->noOp()Ldagger/MembersInjector;
-
-    move-result-object v0
-
-    iget-object v1, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
-
-    invoke-static {v0, v1}, Lcom/udacity/android/ui/ioegg/IOCongratsActivity_MembersInjector;->create(Ldagger/MembersInjector;Ljavax/inject/Provider;)Ldagger/MembersInjector;
-
-    move-result-object v0
-
-    iput-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->iOCongratsActivityMembersInjector:Ldagger/MembersInjector;
-
-    .line 200
+    .line 217
     return-void
 .end method
 
@@ -1383,7 +1497,7 @@
     .registers 2
 
     .prologue
-    .line 309
+    .line 316
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->analyticsProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1399,7 +1513,7 @@
     .registers 2
 
     .prologue
-    .line 324
+    .line 331
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAndDownConverterProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1415,7 +1529,7 @@
     .registers 2
 
     .prologue
-    .line 284
+    .line 291
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideApplicationProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1427,11 +1541,36 @@
     return-object v0
 .end method
 
+.method public authObservable()Lrx/Observable;
+    .registers 2
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Lrx/Observable",
+            "<",
+            "Lcom/udacity/android/data/UserManager$AuthState;",
+            ">;"
+        }
+    .end annotation
+
+    .prologue
+    .line 341
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideAuthObservableProvider:Ljavax/inject/Provider;
+
+    invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lrx/Observable;
+
+    return-object v0
+.end method
+
 .method public filteredLinkMovementMethod()Lcom/udacity/android/data/util/FilteredLinkMovementMethod;
     .registers 2
 
     .prologue
-    .line 319
+    .line 326
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideLinkMovementMethodProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1443,17 +1582,31 @@
     return-object v0
 .end method
 
+.method public inject(Lcom/udacity/android/ui/BaseActivity;)V
+    .registers 3
+    .param p1, "baseActivity"    # Lcom/udacity/android/ui/BaseActivity;
+
+    .prologue
+    .line 276
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->baseActivityMembersInjector:Ldagger/MembersInjector;
+
+    invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
+
+    .line 277
+    return-void
+.end method
+
 .method public inject(Lcom/udacity/android/ui/auth/AuthActivity;)V
     .registers 3
     .param p1, "activity"    # Lcom/udacity/android/ui/auth/AuthActivity;
 
     .prologue
-    .line 214
+    .line 231
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->authActivityMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 215
+    .line 232
     return-void
 .end method
 
@@ -1462,12 +1615,12 @@
     .param p1, "fragment"    # Lcom/udacity/android/ui/auth/LoginFragment;
 
     .prologue
-    .line 244
+    .line 261
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->loginFragmentMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 245
+    .line 262
     return-void
 .end method
 
@@ -1476,12 +1629,12 @@
     .param p1, "dialog"    # Lcom/udacity/android/ui/auth/PasswordResetDialog;
 
     .prologue
-    .line 254
+    .line 271
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->passwordResetDialogMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 255
+    .line 272
     return-void
 .end method
 
@@ -1490,12 +1643,12 @@
     .param p1, "fragment"    # Lcom/udacity/android/ui/auth/SignupFragment;
 
     .prologue
-    .line 249
+    .line 266
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->signupFragmentMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 250
+    .line 267
     return-void
 .end method
 
@@ -1504,16 +1657,15 @@
     .param p1, "activity"    # Lcom/udacity/android/ui/catalog/CatalogActivity;
 
     .prologue
-    .line 204
+    .line 221
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->catalogActivityMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 205
+    .line 222
     return-void
 .end method
 
-#added...
 .method public inject(Lcom/udacity/android/grschroe/GeorgiaTechSSOActivity;)V
     .registers 3
     .param p1, "activity"    # Lcom/udacity/android/grschroe/GeorgiaTechSSOActivity;
@@ -1527,7 +1679,6 @@
     .line 205
     return-void
 .end method
-#added...
 
 
 .method public inject(Lcom/udacity/android/ui/classroom/quiz/FeedbackActivity;)V
@@ -1535,12 +1686,12 @@
     .param p1, "activity"    # Lcom/udacity/android/ui/classroom/quiz/FeedbackActivity;
 
     .prologue
-    .line 219
+    .line 236
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->feedbackActivityMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 220
+    .line 237
     return-void
 .end method
 
@@ -1549,54 +1700,12 @@
     .param p1, "activity"    # Lcom/udacity/android/ui/course/CourseOverviewActivity;
 
     .prologue
-    .line 224
+    .line 241
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->courseOverviewActivityMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 225
-    return-void
-.end method
-
-.method public inject(Lcom/udacity/android/ui/ioegg/IOCongratsActivity;)V
-    .registers 3
-    .param p1, "activity"    # Lcom/udacity/android/ui/ioegg/IOCongratsActivity;
-
-    .prologue
-    .line 269
-    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->iOCongratsActivityMembersInjector:Ldagger/MembersInjector;
-
-    invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
-
-    .line 270
-    return-void
-.end method
-
-.method public inject(Lcom/udacity/android/ui/ioegg/IOCourseListActivity;)V
-    .registers 3
-    .param p1, "activity"    # Lcom/udacity/android/ui/ioegg/IOCourseListActivity;
-
-    .prologue
-    .line 264
-    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->iOCourseListActivityMembersInjector:Ldagger/MembersInjector;
-
-    invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
-
-    .line 265
-    return-void
-.end method
-
-.method public inject(Lcom/udacity/android/ui/ioegg/IOIntroActivity;)V
-    .registers 3
-    .param p1, "activity"    # Lcom/udacity/android/ui/ioegg/IOIntroActivity;
-
-    .prologue
-    .line 259
-    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->iOIntroActivityMembersInjector:Ldagger/MembersInjector;
-
-    invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
-
-    .line 260
+    .line 242
     return-void
 .end method
 
@@ -1605,12 +1714,12 @@
     .param p1, "activity"    # Lcom/udacity/android/ui/lesson/LessonActivity;
 
     .prologue
-    .line 229
+    .line 246
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->lessonActivityMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 230
+    .line 247
     return-void
 .end method
 
@@ -1619,12 +1728,12 @@
     .param p1, "activity"    # Lcom/udacity/android/ui/lesson/LessonNavActivity;
 
     .prologue
-    .line 234
+    .line 251
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->lessonNavActivityMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 235
+    .line 252
     return-void
 .end method
 
@@ -1633,12 +1742,12 @@
     .param p1, "activity"    # Lcom/udacity/android/ui/mycourses/MyCoursesActivity;
 
     .prologue
-    .line 209
+    .line 226
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->myCoursesActivityMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 210
+    .line 227
     return-void
 .end method
 
@@ -1647,12 +1756,12 @@
     .param p1, "activity"    # Lcom/udacity/android/ui/nanodegree/NanodegreeActivity;
 
     .prologue
-    .line 239
+    .line 256
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->nanodegreeActivityMembersInjector:Ldagger/MembersInjector;
 
     invoke-interface {v0, p1}, Ldagger/MembersInjector;->injectMembers(Ljava/lang/Object;)V
 
-    .line 240
+    .line 257
     return-void
 .end method
 
@@ -1660,8 +1769,8 @@
     .registers 2
 
     .prologue
-    .line 289
-    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideMixPanelAPIProvider:Ljavax/inject/Provider;
+    .line 296
+    iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideMixpanelAPIProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
 
@@ -1676,7 +1785,7 @@
     .registers 2
 
     .prologue
-    .line 314
+    .line 321
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->providePicassoProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1692,7 +1801,7 @@
     .registers 2
 
     .prologue
-    .line 299
+    .line 306
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideSharedPreferencesProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1708,7 +1817,7 @@
     .registers 2
 
     .prologue
-    .line 294
+    .line 301
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideGoogleAnalyticsTrackerProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1724,7 +1833,7 @@
     .registers 2
 
     .prologue
-    .line 279
+    .line 286
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideUdacityApiProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1740,7 +1849,7 @@
     .registers 2
 
     .prologue
-    .line 274
+    .line 281
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->udacityApiClientProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1756,7 +1865,7 @@
     .registers 2
 
     .prologue
-    .line 329
+    .line 336
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->provideTagHandlerProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
@@ -1772,7 +1881,7 @@
     .registers 2
 
     .prologue
-    .line 304
+    .line 311
     iget-object v0, p0, Lcom/udacity/android/DaggerUdacityApp_ApplicationComponent;->userManagerProvider:Ljavax/inject/Provider;
 
     invoke-interface {v0}, Ljavax/inject/Provider;->get()Ljava/lang/Object;
